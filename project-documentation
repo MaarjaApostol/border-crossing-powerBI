@@ -1,0 +1,59 @@
+### Overview
+
+Initially this dataset was chosen to be used fully in Excel, from cleansing to visualisations. But as Excel kept crashing I decided to use Power BI instead alongside completing the Power BI Data Analyst Associate path and some additional modules on the Microsoft Learn platform.
+
+**Data source:** https://catalog.data.gov/dataset/border-crossing-entry-data-683ae
+
+**Access:** This dataset is intended for public access and use.
+
+**License:** No license information was provided. If this work was prepared by an officer or employee of the United States government as part of that person's official duties it is considered a [U.S. Government Work](http://www.usa.gov/publicdomain/label/1.0/). 
+
+### Background
+
+The dataset covers two borders - US-Mexico and US-Canada and is for inbound movement only. It includes trucks, trains, buses, personal vehicles, and their passengers, and also pedestrians. 
+
+**File type**: CSV file
+
+**Number of records:** 396401
+
+**Data date range:** January 1996 until October 
+
+I decided to compare two decades - 2000 - 2009 and 2010 - 2019, whilst only looking at the movement of people (train passengers, pedestrians, personal vehicle passengers, bus passengers).
+
+### Data transformation in Excel
+
+| Column    | Converted to type:                     | Errors | NULL values |
+| --------- | -------------------------------------- | ------ | ----------- |
+| Port Name | text                                   | None   | None        |
+| State     | text                                   | None   | None        |
+| Port Code | text                                   | None   | None        |
+| Border    | text                                   | None   | None        |
+| Date      | date (mm-yy)                           | None   | None        |
+| Measure   | text                                   | None   | None        |
+| Value     | number                                 | None   | 122402      |
+| Latitude  | number with 4 decimal places           | None   | None        |
+| Longitude | number with 4 decimal places           | None   | None        |
+| Point     | not converted (Latitude and Longitude) | None   | None        |
+
+[x] Split *Date* column into two - *Month*, *Year*
+
+[x] Created new column *ID* as a combo of *Port Code*, *Measure*, *Month*, *Year*
+
+[x] Applied Conditional Formatting to spot duplicates in the *ID* column, none found but when I applied Remove Duplicates it then removed 11 values. Third check completed with COUNTIF(A:A,A1)>1 where the result was FALSE.
+
+[x] Removed the column *ID* following duplicates check.
+
+[x] Removed the column *Point* as latitude and longitude already present in separate columns.
+
+### Data transformation in Power BI
+
+[x] Filtered out rows of *Value* = *0* prior to applying transformations to the dataset.
+> 
+> Number of records: 273999
+
+[x] Checked Column distribution, Column profile, and Column quality based on the entire data set.
+[x] Filtered for years 2000-2019.
+> 
+> Number of records: 204058
+
+
